@@ -1,0 +1,28 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:recommended",
+    ":semanticCommitsDisabled",
+    "regexManagers:githubActionsVersions",
+    "group:monorepos"
+  ],
+  labels: ["kind/enhancement"],
+  customManagers: [
+    {
+      // Update `_VERSION` and `_version` variables in Makefiles and scripts.
+      // Inspired by `regexManagers:dockerfileVersions` preset.
+      customType: "regex",
+      fileMatch: ["Makefile$", "\\.yaml$", "\\.sh$", "^/hack/*"],
+      matchStrings: [
+        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?(?: registryUrl=(?<registryUrl>[^\\s]+?))?\\s.+?_(VERSION|version) *[?:]?= *\"?(?<currentValue>.+?)\"?\\s"
+      ]
+    },
+  ],
+  packageRules: [
+    {
+      // Group github-actions in one PR.
+      groupName: "github-actions",
+      matchManagers: ["github-actions"]
+    }
+  ]
+}
