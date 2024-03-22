@@ -32,6 +32,12 @@
       // Group github-actions in one PR.
       groupName: "github-actions",
       matchManagers: ["github-actions"]
+    },
+    {
+      // Only create PRs for patch updates of kubectl.
+      "matchPackageNames": ["kubernetes/kubernetes"],
+      // This is a compromise due to the version skew policy of Kubernetes.
+      "allowedVersions": "~1.28"
     }
   ]
 }
