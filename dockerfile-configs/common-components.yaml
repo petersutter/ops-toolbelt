@@ -68,6 +68,11 @@
     version: v1.27.10
     from: https://dl.k8s.io/release/{version}/bin/linux/amd64/kubectl
     info: command line tool for controlling Kubernetes clusters.
+  - name: etcdctl # fake entry
+    # renovate: datasource=github-releases depName=etcd-io/etcd
+    version: v3.4.30
+    from: https://dl.k8s.io/release/{version}/bin/linux/amd64/kubectl
+    info: command line tool for controlling Kubernetes clusters.
 
 - bash:
   - name: generate_locale
