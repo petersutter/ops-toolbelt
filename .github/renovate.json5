@@ -44,6 +44,16 @@
       matchPackageNames: ["kubernetes/kubernetes"],
       // This is a compromise due to the version skew policy of Kubernetes.
       allowedVersions: "~1.28"
+    },
+    {
+      // Add PR footer with release notes for docker releases.
+      "matchDatasources": ["docker"],
+      "prFooter": "```other dependency\nThe `{{depName}}` image has been updated to `{{newVersion}}`.\n```"
+    },
+    {
+      // Add PR footer with release notes link for github-releases.
+      "matchDatasources": ["github-releases"],
+      "prFooter": "```other dependency\n`{{depName}}` has been updated to `{{newVersion}}`. [Release Notes](https://github.com/{{depName}}/releases/tag/{{newVersion}})\n```"
     }
   ]
 }
